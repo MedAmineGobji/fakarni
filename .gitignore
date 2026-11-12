@@ -1,0 +1,14 @@
+.env
+__pycache__/
+*.pyc
+db.sqlite3
+backend/media/
+backend/staticfiles/
+.venv/
+node_modules/
+web/dist/
+mobile/build/
+mobile/.dart_tool/
+.idea/
+.vscode/
+.DS_Store
