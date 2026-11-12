@@ -1,0 +1,184 @@
+/* ============================================================
+   Fakarni — thème violet / lavande
+   ============================================================ */
+:root {
+  --violet-900: #2a1b5c;
+  --violet-700: #5b3fd6;
+  --violet: #7051f5;          /* couleur principale */
+  --violet-400: #9b85ff;
+  --violet-100: #ece7ff;
+  --violet-50: #f6f3ff;
+  --lavender-bg: #efeaf8;
+
+  --green: #3bbf7a;
+  --green-100: #e2f6eb;
+  --orange: #ff7a45;
+  --orange-100: #ffece4;
+
+  --text: #1e1a2e;
+  --muted: #8a84a3;
+  --border: #ebe6f7;
+  --card: #ffffff;
+  --radius: 22px;
+  --shadow: 0 10px 30px rgba(91, 63, 214, 0.08);
+
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: var(--lavender-bg);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; }
+h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin: 0; }
+h2 { font-size: 1.15rem; font-weight: 700; margin: 0; }
+a { color: var(--violet); font-weight: 600; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.muted { color: var(--muted); }
+.small { font-size: 0.85rem; }
+.center { display: grid; place-items: center; min-height: 100vh; }
+.error { color: #d6453d; background: #fff0ef; padding: 0.7rem 1rem; border-radius: 14px; white-space: pre-line; margin: 0; font-size: 0.9rem; }
+.success { color: #1f8f55; background: var(--green-100); padding: 0.7rem 1rem; border-radius: 14px; margin: 0; font-size: 0.9rem; }
+
+/* ---------- Cartes ---------- */
+.card { background: var(--card); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
+
+/* ---------- Formulaires ---------- */
+label { display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem; font-weight: 600; color: #4a4466; }
+label.checkbox { flex-direction: row; align-items: center; gap: 0.6rem; font-weight: 500; }
+input, select {
+  font: inherit; padding: 0.8rem 1rem;
+  border: 1.5px solid var(--border); border-radius: 14px;
+  background: var(--violet-50); color: var(--text);
+  transition: border-color 0.15s, background 0.15s;
+}
+input:focus, select:focus { outline: none; border-color: var(--violet); background: #fff; }
+input:disabled { color: var(--muted); }
+input[type="checkbox"] { width: 1.15rem; height: 1.15rem; accent-color: var(--violet); padding: 0; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+
+/* ---------- Boutons (forme pilule) ---------- */
+.btn {
+  font: inherit; font-weight: 700; padding: 0.9rem 1.4rem;
+  border: none; border-radius: 999px; background: var(--violet); color: #fff; cursor: pointer;
+  box-shadow: 0 8px 20px rgba(112, 81, 245, 0.3);
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  transition: transform 0.1s, background 0.15s;
+}
+.btn:hover { background: var(--violet-700); }
+.btn:active { transform: scale(0.98); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.btn-light { background: var(--violet-100); color: var(--violet-700); box-shadow: none; }
+.btn-light:hover { background: #ddd4ff; }
+.icon-btn {
+  width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
+  background: #fff; border: none; color: var(--violet); box-shadow: var(--shadow); cursor: pointer;
+}
+
+/* ---------- Badges ---------- */
+.badge { display: inline-block; align-self: flex-start; font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.75rem; border-radius: 999px; }
+.badge-missed { background: var(--orange); color: #fff; }
+.badge-upcoming { background: var(--green); color: #fff; }
+.badge-soft { background: var(--violet-100); color: var(--violet-700); }
+.chip { display: inline-flex; align-items: center; gap: 0.5rem; background: #fff; border-radius: 999px; padding: 0.6rem 1.15rem; font-weight: 600; box-shadow: var(--shadow); text-transform: capitalize; }
+
+/* ---------- Logo et avatar ---------- */
+.logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.45rem; color: var(--text); letter-spacing: -0.02em; }
+.logo-icon {
+  width: 40px; height: 40px; border-radius: 14px; display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--violet-400), var(--violet)); color: #fff;
+  box-shadow: 0 6px 16px rgba(112, 81, 245, 0.35);
+}
+.avatar {
+  width: 44px; height: 44px; flex: none; border-radius: 50%; display: grid; place-items: center;
+  font-weight: 800; color: #fff; background: linear-gradient(135deg, var(--violet-400), var(--violet-700));
+}
+
+/* ---------- Connexion / inscription ---------- */
+.auth-page {
+  min-height: 100vh; display: grid; place-items: center; padding: 1.5rem;
+  position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #f4f0ff 0%, #e9e1fb 55%, #ddd2f7 100%);
+}
+.auth-page::before, .auth-page::after {
+  content: ""; position: absolute; border-radius: 50%; z-index: 0;
+  background: radial-gradient(circle at 30% 30%, #c8b8ff, #8f75f7); opacity: 0.55;
+}
+.auth-page::before { width: 420px; height: 420px; top: -140px; right: -120px; }
+.auth-page::after { width: 300px; height: 300px; bottom: -110px; left: -90px; }
+.auth-card {
+  position: relative; z-index: 1; width: 100%; max-width: 460px; padding: 2.4rem;
+  display: flex; flex-direction: column; gap: 1.1rem;
+  background: rgba(255, 255, 255, 0.86); backdrop-filter: blur(12px); border-radius: 30px;
+}
+.auth-card h1 { font-size: 1.7rem; }
+.auth-card .btn { margin-top: 0.4rem; }
+
+/* ---------- Mise en page connectée ---------- */
+.app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+.sidebar {
+  background: #fff; padding: 1.8rem 1.2rem; display: flex; flex-direction: column; gap: 2.2rem;
+  border-radius: 0 32px 32px 0; box-shadow: var(--shadow);
+}
+.sidebar nav { display: flex; flex-direction: column; gap: 0.35rem; }
+.sidebar nav a {
+  display: flex; align-items: center; gap: 0.8rem; color: var(--muted); font-weight: 600;
+  text-decoration: none; padding: 0.85rem 1rem; border-radius: 16px;
+}
+.sidebar nav a:hover { background: var(--violet-50); color: var(--violet-700); }
+.sidebar nav a.active { background: var(--violet); color: #fff; box-shadow: 0 8px 20px rgba(112, 81, 245, 0.3); }
+.sidebar-footer { margin-top: auto; display: flex; flex-direction: column; gap: 0.9rem; }
+.user-chip { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; border-radius: 18px; background: var(--violet-50); }
+.user-chip div { display: flex; flex-direction: column; min-width: 0; }
+.user-chip strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.user-chip div span { font-size: 0.78rem; color: var(--muted); }
+
+.content { padding: 2.2rem 2.6rem; max-width: 1100px; width: 100%; display: flex; flex-direction: column; gap: 1.6rem; }
+.page-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.greeting { display: flex; align-items: center; gap: 0.9rem; }
+.greeting .avatar { width: 52px; height: 52px; font-size: 1.1rem; }
+.form { display: flex; flex-direction: column; gap: 1.1rem; max-width: 600px; }
+
+/* ---------- Bandeau des jours ---------- */
+.days { display: flex; gap: 0.7rem; overflow-x: auto; padding: 0.4rem 0.4rem 0.8rem; margin: -0.4rem; }
+.day {
+  flex: none; width: 72px; padding: 0.95rem 0; border-radius: 999px;
+  display: flex; flex-direction: column; align-items: center; gap: 0.15rem;
+  background: rgba(255, 255, 255, 0.55); color: var(--text); border: none; font: inherit; cursor: pointer;
+}
+.day strong { font-size: 1.35rem; }
+.day span { font-size: 0.78rem; color: var(--muted); text-transform: capitalize; }
+.day:hover { background: rgba(255, 255, 255, 0.85); }
+.day.active { background: #fff; box-shadow: 0 4px 12px rgba(91, 63, 214, 0.12); }
+.day.active strong { color: var(--violet); }
+
+/* ---------- Statistiques ---------- */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; }
+.stat { display: flex; flex-direction: column; gap: 0.5rem; }
+.stat-icon { width: 46px; height: 46px; border-radius: 15px; display: grid; place-items: center; }
+.stat strong { font-size: 2rem; font-weight: 800; }
+.tone-violet .stat-icon { background: var(--violet-100); color: var(--violet); }
+.tone-green .stat-icon { background: var(--green-100); color: var(--green); }
+.tone-orange .stat-icon { background: var(--orange-100); color: var(--orange); }
+
+/* ---------- Prises / état vide ---------- */
+.intake { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; border-radius: 20px; background: var(--violet-50); }
+.intake + .intake { margin-top: 0.7rem; }
+.intake-icon { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--violet); flex: none; }
+.empty { text-align: center; padding: 2rem 1rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+.empty-icon { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--violet-100); color: var(--violet); }
+
+/* ---------- Tableau ---------- */
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 0.85rem 0.6rem; border-bottom: 1px solid var(--border); }
+th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+
+@media (max-width: 820px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { border-radius: 0 0 28px 28px; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 1rem; padding: 1rem; }
+  .sidebar nav { flex-direction: row; }
+  .sidebar-footer { margin-top: 0; flex-direction: row; align-items: center; }
+  .content { padding: 1.4rem; }
+  .row { grid-template-columns: 1fr; }
+}
