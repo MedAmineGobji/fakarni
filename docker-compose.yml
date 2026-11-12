@@ -4,8 +4,12 @@ services:
     env_file: .env
     volumes:
       - pgdata:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    # Pas de port ouvert sur le PC : le backend joint PostgreSQL via le réseau Docker interne (db:5432).
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   redis:
     image: redis:7
@@ -20,8 +24,37 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
-      - redis
+      db:
+        condition: service_healthy   # attend que PostgreSQL soit prêt
+      redis:
+        condition: service_started
+    restart: unless-stopped
+
+  # Exécute les tâches (envoi des rappels, relances…)
+  worker:
+    build: ./backend
+    command: celery -A config worker -l info --concurrency 2
+    env_file: .env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: unless-stopped
+
+  # Planificateur : déclenche les tâches toutes les minutes / 5 minutes
+  beat:
+    build: ./backend
+    command: celery -A config beat -l info --schedule /tmp/celerybeat-schedule
+    env_file: .env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      redis:
+        condition: service_started
+    restart: unless-stopped
 
 volumes:
   pgdata:

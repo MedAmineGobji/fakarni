@@ -4,9 +4,14 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from accounts.views import MeView, RegisterView, UserAdminViewSet
+from notifications.views import NotificationViewSet
+from treatments.views import IntakeViewSet, MedicationViewSet
 
 router = DefaultRouter()
 router.register("admin/users", UserAdminViewSet, basename="admin-users")
+router.register("medications", MedicationViewSet, basename="medications")
+router.register("intakes", IntakeViewSet, basename="intakes")
+router.register("notifications", NotificationViewSet, basename="notifications")
 
 urlpatterns = [
     path("admin/", admin.site.urls),

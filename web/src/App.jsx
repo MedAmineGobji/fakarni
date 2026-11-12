@@ -6,6 +6,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
+import Medications from "./pages/Medications";
+import MedicationForm from "./pages/MedicationForm";
+import History from "./pages/History";
 import AdminUsers from "./pages/AdminUsers";
 
 export default function App() {
@@ -20,6 +23,12 @@ export default function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/profile" element={<Profile />} />
+              <Route element={<ProtectedRoute roles={["PATIENT"]} />}>
+                <Route path="/medications" element={<Medications />} />
+                <Route path="/medications/new" element={<MedicationForm />} />
+                <Route path="/medications/:id" element={<MedicationForm />} />
+                <Route path="/history" element={<History />} />
+              </Route>
               <Route element={<ProtectedRoute roles={["ADMIN"]} />}>
                 <Route path="/admin/users" element={<AdminUsers />} />
               </Route>

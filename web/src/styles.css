@@ -182,3 +182,109 @@ tr:last-child td { border-bottom: none; }
   .content { padding: 1.4rem; }
   .row { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   Étape 3 — médicaments, prises, historique
+   ============================================================ */
+.badge-taken { background: var(--violet-100); color: var(--violet-700); }
+.badge-snoozed { background: #fff4d6; color: #a86b00; }
+.btn-sm { padding: 0.55rem 1rem; font-size: 0.88rem; box-shadow: none; }
+.btn-ghost-violet { background: transparent; color: var(--muted); box-shadow: none; border: 1.5px solid var(--border); }
+.btn-ghost-violet:hover { background: var(--violet-50); color: var(--violet-700); }
+a.btn { text-decoration: none; }
+a.btn:hover { text-decoration: none; color: #fff; }
+a.btn-light:hover { color: var(--violet-700); }
+
+.section-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.intake-list { display: flex; flex-direction: column; gap: 0.7rem; }
+.intake-list .intake + .intake { margin-top: 0; }
+.intake-name { flex: 1; display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.intake-name > span { font-size: 0.82rem; color: var(--muted); }
+.dosage { font-weight: 500; color: var(--muted); font-size: 0.9rem; }
+.intake-time { display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; font-weight: 700; min-width: 90px; }
+.intake-time .badge { align-self: flex-end; }
+.intake-actions { display: flex; gap: 0.4rem; }
+.round-btn {
+  width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer; flex: none;
+  background: #fff; color: var(--violet-700); font: inherit; font-weight: 800; font-size: 0.85rem;
+  box-shadow: 0 2px 8px rgba(91, 63, 214, 0.1);
+}
+.round-btn:hover { background: var(--violet-100); }
+.round-btn.ok { background: var(--violet); color: #fff; }
+.round-btn.ok:hover { background: var(--violet-700); }
+.round-btn.no { color: #d6453d; }
+.round-btn.no:hover { background: #fff0ef; }
+.round-btn:disabled { opacity: 0.5; cursor: wait; }
+
+.day.today span { color: var(--violet); font-weight: 700; }
+
+.tabs { display: inline-flex; gap: 0.3rem; background: #fff; padding: 0.3rem; border-radius: 999px; box-shadow: var(--shadow); align-self: flex-start; }
+.tabs button { font: inherit; font-weight: 600; border: none; background: transparent; color: var(--muted); padding: 0.55rem 1.1rem; border-radius: 999px; cursor: pointer; }
+.tabs button.active { background: var(--violet); color: #fff; }
+
+.med-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.1rem; }
+.med-card { display: flex; flex-direction: column; gap: 0.9rem; }
+.med-head { display: flex; align-items: center; gap: 0.9rem; }
+.med-head .intake-icon { background: var(--violet-100); }
+.pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.pill-tag { font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.8rem; border-radius: 999px; background: var(--violet-50); color: #5a5378; border: 1px solid var(--border); }
+.schedule-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.9rem; }
+.schedule-list li { background: var(--violet-50); padding: 0.55rem 0.8rem; border-radius: 12px; }
+.schedule-list strong { color: var(--violet-700); }
+.instructions { margin: 0; }
+.med-actions { display: flex; gap: 0.5rem; margin-top: auto; }
+
+.form.wide { max-width: 760px; }
+fieldset { border: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+legend { font-size: 0.85rem; font-weight: 600; color: #4a4466; margin-bottom: 0.5rem; padding: 0; }
+textarea { font: inherit; padding: 0.8rem 1rem; border: 1.5px solid var(--border); border-radius: 14px; background: var(--violet-50); resize: vertical; }
+textarea:focus { outline: none; border-color: var(--violet); background: #fff; }
+.choice-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.choice {
+  font: inherit; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+  padding: 0.65rem 1.1rem; border-radius: 16px; border: 1.5px solid var(--border);
+  background: var(--violet-50); color: #5a5378;
+}
+.choice:hover { border-color: var(--violet-400); }
+.choice.active { background: var(--violet); border-color: var(--violet); color: #fff; box-shadow: 0 6px 16px rgba(112, 81, 245, 0.25); }
+.schedule-editor { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; padding: 0.8rem; border-radius: 18px; background: var(--violet-50); }
+.schedule-editor input[type="time"] { width: 160px; background: #fff; font-weight: 700; }
+.schedule-editor input:not([type]) { width: 150px; background: #fff; }
+.day-toggles { display: flex; gap: 0.3rem; }
+.day-toggles button {
+  width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--border); cursor: pointer;
+  background: #fff; color: var(--muted); font: inherit; font-weight: 700; font-size: 0.82rem;
+}
+.day-toggles button.on { background: var(--violet); border-color: var(--violet); color: #fff; }
+.day-title { text-transform: capitalize; margin-bottom: 1rem; }
+
+@media (max-width: 820px) {
+  .intake { flex-wrap: wrap; }
+  .med-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   Étape 4 — notifications
+   ============================================================ */
+.bell { position: relative; }
+.bell .icon-btn { position: relative; }
+.bell-count {
+  position: absolute; top: -4px; right: -4px; min-width: 22px; height: 22px; padding: 0 6px;
+  border-radius: 999px; background: var(--orange); color: #fff; font-size: 0.72rem; font-weight: 800;
+  display: grid; place-items: center; border: 2px solid var(--lavender-bg);
+}
+.bell-panel {
+  position: absolute; right: 0; top: calc(100% + 10px); width: 380px; max-height: 70vh; overflow-y: auto;
+  z-index: 20; display: flex; flex-direction: column; gap: 0.8rem; padding: 1.2rem;
+  box-shadow: 0 20px 50px rgba(42, 27, 92, 0.18);
+}
+.bell-panel .section-head { margin-bottom: 0; }
+.link-btn { background: none; border: none; font: inherit; color: var(--violet); font-weight: 600; font-size: 0.82rem; cursor: pointer; }
+.full { width: 100%; }
+.center-text { text-align: center; }
+.notif-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.notif-list li { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.8rem 0.9rem; border-radius: 16px; background: #fafafe; cursor: default; }
+.notif-list li.unread { background: var(--violet-50); box-shadow: inset 3px 0 0 var(--violet); cursor: pointer; }
+.notif-top { display: flex; justify-content: space-between; align-items: center; }
+.nav-count { margin-left: auto; background: var(--orange); color: #fff; font-size: 0.72rem; font-weight: 800; border-radius: 999px; padding: 0.1rem 0.5rem; }
+@media (max-width: 820px) { .bell-panel { width: calc(100vw - 2rem); right: -0.5rem; } }

@@ -5,3 +5,5 @@ django-cors-headers>=4.4
 psycopg[binary]>=3.2
 python-dotenv>=1.0
 gunicorn>=22.0
+celery[redis]>=5.4
+firebase-admin>=6.5

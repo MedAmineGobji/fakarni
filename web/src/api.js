@@ -68,3 +68,27 @@ export const authApi = {
 };
 
 export default api;
+
+export const medsApi = {
+  list: (archived = false) => api.get("/medications/", { params: archived ? { archived: true } : {} }),
+  get: (id) => api.get(`/medications/${id}/`),
+  create: (payload) => api.post("/medications/", payload),
+  update: (id, payload) => api.patch(`/medications/${id}/`, payload),
+  archive: (id) => api.delete(`/medications/${id}/`),
+  restore: (id) => api.patch(`/medications/${id}/`, { is_archived: false }),
+};
+
+export const intakesApi = {
+  forDay: (date) => api.get("/intakes/", { params: { date } }),
+  history: (from, to) => api.get("/intakes/", { params: { from, to } }),
+  take: (id) => api.post(`/intakes/${id}/take/`),
+  snooze: (id, minutes = 15) => api.post(`/intakes/${id}/snooze/`, { minutes }),
+  skip: (id) => api.post(`/intakes/${id}/skip/`),
+  stats: (days = 30) => api.get("/intakes/stats/", { params: { days } }),
+};
+
+export const notificationsApi = {
+  list: () => api.get("/notifications/"),
+  read: (id) => api.post(`/notifications/${id}/read/`),
+  readAll: () => api.post("/notifications/read-all/"),
+};

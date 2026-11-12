@@ -1,6 +1,7 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
-import { Avatar, HomeIcon, Logo, LogoutIcon, UserIcon, UsersIcon } from "./Icons";
+import { NotificationsProvider, useNotifications } from "../notifications/NotificationsContext";
+import { Avatar, CalendarIcon, HomeIcon, Logo, LogoutIcon, PillIcon, UserIcon, UsersIcon } from "./Icons";
 
 const ROLE_LABELS = {
   PATIENT: "Patient",
@@ -9,9 +10,27 @@ const ROLE_LABELS = {
   ADMIN: "Administrateur",
 };
 
+function HomeLink() {
+  const { unread } = useNotifications();
+  return (
+    <NavLink to="/" end>
+      <HomeIcon /> Accueil {unread > 0 && <span className="nav-count">{unread}</span>}
+    </NavLink>
+  );
+}
+
 export default function Layout() {
+  return (
+    <NotificationsProvider>
+      <LayoutInner />
+    </NotificationsProvider>
+  );
+}
+
+function LayoutInner() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const isPatient = user.role === "PATIENT";
 
   const handleLogout = () => {
     logout();
@@ -23,7 +42,9 @@ export default function Layout() {
       <aside className="sidebar">
         <Logo />
         <nav>
-          <NavLink to="/" end><HomeIcon /> Accueil</NavLink>
+          <HomeLink />
+          {isPatient && <NavLink to="/medications"><PillIcon /> Médicaments</NavLink>}
+          {isPatient && <NavLink to="/history"><CalendarIcon /> Historique</NavLink>}
           <NavLink to="/profile"><UserIcon /> Mon profil</NavLink>
           {user.role === "ADMIN" && <NavLink to="/admin/users"><UsersIcon /> Utilisateurs</NavLink>}
         </nav>

@@ -12,3 +12,5 @@ mobile/.dart_tool/
 .idea/
 .vscode/
 .DS_Store
+backend/secrets/
+celerybeat-schedule*
